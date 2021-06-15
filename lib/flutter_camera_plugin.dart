@@ -8,7 +8,9 @@ import 'package:flutter_camera_plugin/flutter_camera_plugin_method_channel.dart'
 export 'package:flutter_camera_plugin/external/flutter_camera_plugin_constants.dart';
 export 'package:flutter_camera_plugin/flutter_camera_plugin_controller.dart';
 export 'package:flutter_camera_plugin/flutter_camera_plugin_method_channel.dart';
-
+export 'package:flutter_camera_plugin/flutter_camera_plugin_descriptor.dart';
+export 'package:flutter_camera_plugin/external/flutter_camera_plugin_enums.dart';
+export 'package:flutter_camera_plugin/external/flutter_camera_plugin_constants.dart';
 
 class FlutterCameraPlugin {
   static final MethodChannel _channel =
