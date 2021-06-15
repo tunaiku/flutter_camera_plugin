@@ -5,7 +5,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 class TakePictureScreen extends StatefulWidget {
-  const TakePictureScreen({Key key}) : super(key: key);
+  const TakePictureScreen({Key? key}) : super(key: key);
 
   @override
   _TakePictureScreenState createState() => _TakePictureScreenState();
@@ -28,13 +28,13 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
       print("Perform Action Here");
     }
 
-    _cameraController.listenForPictureClick(callback);
+    _cameraController!.listenForPictureClick(callback);
     if (mounted) {
       setState(() {});
     }
   }
 
-  FlutterCameraPluginController _cameraController;
+  FlutterCameraPluginController? _cameraController;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
                           torchEnabled = !torchEnabled;
                         });
 
-                        await _cameraController.setFlashMode(torchEnabled
+                        await _cameraController!.setFlashMode(torchEnabled
                             ? CameraFlashMode.Torch
                             : CameraFlashMode.Auto);
                       },
@@ -83,8 +83,8 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
                         final imagePath = join(
                             (await getTemporaryDirectory()).path,
                             '${DateTime.now()}.png');
-                        await _cameraController.takePicture(imagePath);
-                        if (imagePath != null) {
+                        await _cameraController!.takePicture(imagePath);
+                        if (imagePath.isNotEmpty) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(

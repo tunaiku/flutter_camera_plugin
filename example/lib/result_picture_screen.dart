@@ -6,8 +6,8 @@ class ResultPictureScreen extends StatelessWidget {
   final String imagePath;
 
   const ResultPictureScreen({
-    @required this.imagePath,
-    Key key,
+    required this.imagePath,
+    Key? key,
   }) : super(key: key);
 
   @override
