@@ -4,7 +4,7 @@ import 'package:flutter_camera_plugin/flutter_camera_plugin_method_channel.dart'
 
 class FlutterCameraPluginDescriptor {
   FlutterCameraPluginDescriptor(
-      {this.name, this.lensFacing, this.sensorOrientation});
+      {required this.name, required this.lensFacing, required this.sensorOrientation});
 
   final String name;
   final CameraFacing lensFacing;
@@ -13,11 +13,10 @@ class FlutterCameraPluginDescriptor {
   final int sensorOrientation;
 
   static getAvailableCameras() async {
-    final List<Map<dynamic, dynamic>> cameras =
-        await FlutterCameraPluginMethodChannel.channel
-            .invokeListMethod<Map<dynamic, dynamic>>(
-                FlutterCameraPluginConstants.getAvailableCamerasMethodName);
-    return cameras.map((Map<dynamic, dynamic> camera) {
+    final List<Map<dynamic, dynamic>>? cameras = await FlutterCameraPluginMethodChannel.channel
+        .invokeListMethod<Map<dynamic, dynamic>>(
+            FlutterCameraPluginConstants.getAvailableCamerasMethodName);
+    return cameras!.map((Map<dynamic, dynamic> camera) {
       return FlutterCameraPluginDescriptor(
         name: camera['name'],
         lensFacing: getCameraFacingFromString(camera['lensFacing']),

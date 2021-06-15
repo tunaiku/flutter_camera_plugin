@@ -26,11 +26,11 @@ class FlutterCameraPlugin {
 
 class FlutterCameraPluginPreview extends StatefulWidget {
   const FlutterCameraPluginPreview({
-    Key key,
+    Key? key,
     this.flutterCameraPluginController,
   }) : super(key: key);
 
-  final FlutterCameraPluginController flutterCameraPluginController;
+  final FlutterCameraPluginController? flutterCameraPluginController;
 
   @override
   _FlutterCameraPluginPreviewState createState() =>
@@ -51,6 +51,6 @@ class _FlutterCameraPluginPreviewState
     if (widget.flutterCameraPluginController == null) {
       return;
     }
-    widget.flutterCameraPluginController.initialize();
+    widget.flutterCameraPluginController!.initialize();
   }
 }
