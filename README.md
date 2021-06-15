@@ -1,6 +1,7 @@
 # flutter_camera_plugin
 
 A plugin for camera x on android and camera for ios (coming soon)
+This plugin are inspired by [flutter_camera_x](https://github.com/Pranjal2041/flutter_camera_x) plugin
 
 ## Getting Started
 
