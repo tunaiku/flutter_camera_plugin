@@ -1,7 +1,6 @@
 name: flutter_camera_plugin
 description: A plugin for camera x on android and camera for ios (coming soon)
 version: 1.0.0
-publish_to: none
 author:
 
 environment:
