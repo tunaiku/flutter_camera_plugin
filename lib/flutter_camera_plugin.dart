@@ -8,7 +8,9 @@ import 'package:flutter_camera_plugin/flutter_camera_plugin_method_channel.dart'
 export 'package:flutter_camera_plugin/external/flutter_camera_plugin_constants.dart';
 export 'package:flutter_camera_plugin/flutter_camera_plugin_controller.dart';
 export 'package:flutter_camera_plugin/flutter_camera_plugin_method_channel.dart';
-
+export 'package:flutter_camera_plugin/flutter_camera_plugin_descriptor.dart';
+export 'package:flutter_camera_plugin/external/flutter_camera_plugin_enums.dart';
+export 'package:flutter_camera_plugin/external/flutter_camera_plugin_constants.dart';
 
 class FlutterCameraPlugin {
   static final MethodChannel _channel =
@@ -24,11 +26,11 @@ class FlutterCameraPlugin {
 
 class FlutterCameraPluginPreview extends StatefulWidget {
   const FlutterCameraPluginPreview({
-    Key key,
+    Key? key,
     this.flutterCameraPluginController,
   }) : super(key: key);
 
-  final FlutterCameraPluginController flutterCameraPluginController;
+  final FlutterCameraPluginController? flutterCameraPluginController;
 
   @override
   _FlutterCameraPluginPreviewState createState() =>
@@ -49,6 +51,6 @@ class _FlutterCameraPluginPreviewState
     if (widget.flutterCameraPluginController == null) {
       return;
     }
-    widget.flutterCameraPluginController.initialize();
+    widget.flutterCameraPluginController!.initialize();
   }
 }
