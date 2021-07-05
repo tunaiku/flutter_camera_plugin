@@ -2,7 +2,7 @@ enum CameraFlashMode { On, Off, Auto, Torch }
 
 enum CameraFacing { Front, Back, External }
 
-enum ResolutionPresetX {
+enum CameraResolutionPreset {
   /// 240p (320x240) on Android
   low,
 
@@ -17,9 +17,6 @@ enum ResolutionPresetX {
 
   /// 2160p (3840x2160)
   ultraHigh,
-
-  /// The highest resolution possible.
-  max,
 }
 
 getCameraFacingFromString(String facing) {
@@ -41,5 +38,22 @@ getStringFromCameraFacing(CameraFacing facing) {
       return "Front";
     case CameraFacing.External:
       return "External";
+  }
+}
+
+getCameraResolutionPreset(CameraResolutionPreset? cameraResolutionPreset) {
+  switch (cameraResolutionPreset) {
+    case CameraResolutionPreset.low:
+      return "low";
+    case CameraResolutionPreset.medium:
+      return "medium";
+    case CameraResolutionPreset.high:
+      return "high";
+    case CameraResolutionPreset.veryHigh:
+      return "veryHigh";
+    case CameraResolutionPreset.ultraHigh:
+      return "ultraHigh";
+    default:
+      return "ultraHigh";
   }
 }
