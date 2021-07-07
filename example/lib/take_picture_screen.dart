@@ -23,7 +23,10 @@ class _TakePictureScreenState extends State<TakePictureScreen> {
   initializeCamera() async {
     var cameras = await FlutterCameraPluginDescriptor.getAvailableCameras();
     print(cameras);
-    _cameraController = FlutterCameraPluginController(cameras[0]);
+    _cameraController = FlutterCameraPluginController(
+      cameras[0],
+      cameraResolutionPreset: CameraResolutionPreset.veryHigh,
+    );
     void callback() {
       print("Perform Action Here");
     }
