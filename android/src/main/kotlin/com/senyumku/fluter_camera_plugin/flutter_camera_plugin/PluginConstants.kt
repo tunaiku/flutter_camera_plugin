@@ -10,4 +10,5 @@ object PluginConstants {
     const val set_lens_facing_method_name = "setLensFacing"
     const val set_preview_aspect_ratio_method_name = "setPreviewAspectRatio"
     const val play_sound_on_click_method_name = "playSoundOnClick"
+    const val set_camera_resolution = "setCameraResolution"
 }

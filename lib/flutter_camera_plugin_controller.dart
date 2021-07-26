@@ -1,23 +1,26 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_camera_plugin/external/flutter_camera_plugin_constants.dart';
 import 'package:flutter_camera_plugin/external/flutter_camera_plugin_enums.dart';
+import 'package:flutter_camera_plugin/flutter_camera_plugin.dart';
+import 'package:flutter_camera_plugin/flutter_camera_plugin_descriptor.dart';
 
 class FlutterCameraPluginController {
-  var _cameraXDescriptor;
-  var _saveToFile;
+  FlutterCameraPluginDescriptor? cameraDescriptor;
+  bool? saveToFile;
+  CameraResolutionPreset? cameraResolutionPreset;
 
-  FlutterCameraPluginController(cameraXDescriptor, {saveToFile = true}) {
-    this._cameraXDescriptor = cameraXDescriptor;
-    this._channel =
-        new MethodChannel('${FlutterCameraPluginConstants.channelId}_0');
-    this._saveToFile = saveToFile;
-  }
+  FlutterCameraPluginController(
+    this.cameraDescriptor, {
+    this.saveToFile = true,
+    this.cameraResolutionPreset = CameraResolutionPreset.ultraHigh,
+  });
 
-  MethodChannel _channel;
+  MethodChannel _channel =
+      MethodChannel('${FlutterCameraPluginConstants.channelId}_0');
 
   listenForPictureClick(var callback) {
     try {
-      handleMethodCall(MethodCall call) {
+      Future<dynamic> handleMethodCall(MethodCall call) async {
         if (call.method == "pictureClicked") {
           callback();
         }
@@ -47,11 +50,12 @@ class FlutterCameraPluginController {
   Future<void> initialize() async {
     print("before Initializing camera here");
 
-    if (_cameraXDescriptor == null) return;
+    if (cameraDescriptor == null) return;
     print("Initializing camera here");
     _channel.invokeMethod("initializeCamera", {
-      "lensFacing": getStringFromCameraFacing(_cameraXDescriptor.lensFacing),
-      "saveToFile": _saveToFile
+      "lensFacing": getStringFromCameraFacing(cameraDescriptor!.lensFacing),
+      "saveToFile": saveToFile,
+      "cameraResolution": getCameraResolutionPreset(cameraResolutionPreset),
     });
   }
 

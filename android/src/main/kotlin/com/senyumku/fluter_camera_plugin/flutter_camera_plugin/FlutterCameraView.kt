@@ -58,6 +58,7 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
+import com.senyumku.fluter_camera_plugin.flutter_camera_plugin.PluginConstants.set_camera_resolution
 import java.util.HashMap
 import java.util.Objects
 
@@ -72,7 +73,8 @@ class FlutterCameraView internal constructor(
     private val executor: Executor = Executors.newSingleThreadExecutor()
 
     private lateinit var camera: Camera
-    private var flashMode = ImageCapture.FLASH_MODE_AUTO
+    private var flashMode = ImageCapture.FLASH_MODE_OFF
+    private var cameraResolution = Size(2160, 3840)
     private var imageCapture: ImageCapture? = null
     private var cameraId = 0
     private var lensFacing = CameraSelector.LENS_FACING_BACK
@@ -131,7 +133,7 @@ class FlutterCameraView internal constructor(
         imageCapture = plugin.activityPluginBinding?.activity?.windowManager?.defaultDisplay
             ?.rotation?.let {
                 builder
-                    .setTargetResolution(Size(1080, 1920))
+                    .setTargetResolution(cameraResolution)
                     .setTargetRotation(
                         it
                     )
@@ -177,7 +179,7 @@ class FlutterCameraView internal constructor(
         uBuffer.get(nv21, ySize + vSize, uSize)
         val yuvImage = YuvImage(nv21, ImageFormat.NV21, image.width, image.height, null)
         val out = ByteArrayOutputStream()
-        yuvImage.compressToJpeg(Rect(0, 0, yuvImage.width, yuvImage.height), 75, out)
+        yuvImage.compressToJpeg(Rect(0, 0, yuvImage.width, yuvImage.height), 100, out)
         val imageBytes: ByteArray = out.toByteArray()
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
     }
@@ -264,6 +266,10 @@ class FlutterCameraView internal constructor(
         }
     }
 
+    private fun setCameraResolution(resolution: String?){
+        this.cameraResolution = CameraUtils.getCamaraResolution(resolution)
+    }
+
     private fun setTorchMode(mode: Boolean) {
         torchMode = mode
         try {
@@ -299,6 +305,7 @@ class FlutterCameraView internal constructor(
             }
             initializeCamera -> {
                 setLensFacing(call.argument<Any>("lensFacing") as String?)
+                setCameraResolution(call.argument<Any>("cameraResolution") as String?)
                 if (call.argument<Any?>("saveToFile") != null && !(call.argument<Any>("saveToFile") as Boolean)) {
                     saveToFile = true
                 }
@@ -328,6 +335,10 @@ class FlutterCameraView internal constructor(
             play_sound_on_click_method_name -> {
                 setPlaySoundClick((call.argument<Any>("data") as Boolean?)!!)
                 result.notImplemented()
+            }
+            set_camera_resolution ->{
+                setCameraResolution(call.argument<Any>("data") as String?)
+                result.success(true)
             }
             else -> result.notImplemented()
         }
