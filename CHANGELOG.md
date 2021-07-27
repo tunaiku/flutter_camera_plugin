@@ -1,3 +1,5 @@
-## 0.0.1
+## 1.0.0
 
-* TODO: Describe initial release.
+* Null safety plugin.
+* maintain plugin from [flutter_camera_x](https://github.com/Pranjal2041/flutter_camera_x) plugin
+* Add adjust camera resolution.
