@@ -5,7 +5,7 @@ This plugin are inspired by [flutter_camera_x](https://github.com/Pranjal2041/fl
 
 ## Change Log
 
-Version 1.1.0 *(2021-07-26)*
+Version 1.0.0 *(2021-07-26)*
 ----------------------------
  * Null safety plugin.
  * maintain plugin from [flutter_camera_x](https://github.com/Pranjal2041/flutter_camera_x) plugin
