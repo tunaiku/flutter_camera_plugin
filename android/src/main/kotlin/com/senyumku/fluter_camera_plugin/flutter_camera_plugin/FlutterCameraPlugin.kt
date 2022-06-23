@@ -34,7 +34,7 @@ class FlutterCameraPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         this.flutterPluginBinding = flutterPluginBinding
         flutterPluginBinding.platformViewRegistry.registerViewFactory(
             previewViewType,
-            CameraViewFactory(flutterPluginBinding.binaryMessenger, flutterPluginBinding, this)
+            CameraViewFactory(flutterPluginBinding.applicationContext, flutterPluginBinding.binaryMessenger, flutterPluginBinding, this)
         )
     }
 

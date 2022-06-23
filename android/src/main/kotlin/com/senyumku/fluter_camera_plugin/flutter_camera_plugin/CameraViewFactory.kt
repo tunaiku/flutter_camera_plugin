@@ -8,12 +8,14 @@ import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
 
 class CameraViewFactory(
+    private val context: Context,
     private val messenger: BinaryMessenger,
     private var flutterPluginBinding: FlutterPluginBinding,
-    var plugin: FlutterCameraPlugin
+    var plugin: FlutterCameraPlugin,
+
 ) :
     PlatformViewFactory(StandardMessageCodec.INSTANCE) {
-    override fun create(context: Context, id: Int, o: Any?): PlatformView {
+    override fun create(c: Context?, id: Int, o: Any?): PlatformView {
         return FlutterCameraView(context, messenger, id, flutterPluginBinding, plugin)
     }
 

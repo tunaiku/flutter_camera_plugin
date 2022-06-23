@@ -64,7 +64,7 @@ import java.util.Objects
 
 
 class FlutterCameraView internal constructor(
-    context: Context, messenger: BinaryMessenger?, id: Int,
+    context: Context, messenger: BinaryMessenger, id: Int,
     flutterPluginBinding: FlutterPluginBinding, plugin: FlutterCameraPlugin
 ) : PlatformView, MethodCallHandler {
     private val methodChannel: MethodChannel =
@@ -364,6 +364,7 @@ class FlutterCameraView internal constructor(
         this.plugin = plugin
         this.flutterPluginBinding = flutterPluginBinding
         methodChannel.setMethodCallHandler(this)
+
         mPreviewView = PreviewView(context)
         mPreviewView.importantForAccessibility = 0
         mPreviewView.minimumHeight = 100
