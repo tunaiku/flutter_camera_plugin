@@ -1,8 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:flutter_camera_plugin/external/flutter_camera_plugin_constants.dart';
-import 'package:flutter_camera_plugin/external/flutter_camera_plugin_enums.dart';
 import 'package:flutter_camera_plugin/flutter_camera_plugin.dart';
-import 'package:flutter_camera_plugin/flutter_camera_plugin_descriptor.dart';
 
 class FlutterCameraPluginController {
   FlutterCameraPluginDescriptor? cameraDescriptor;
